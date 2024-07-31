@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://c83e3s1gq2rdw"]
+
+[ext_resource type="Texture2D" uid="uid://d1i5typ130x5l" path="res://Assets/Outdoor decoration/dialogue.png" id="1_emfsx"]
+
+[node name="Dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -27.0
+offset_top = -24.0
+offset_right = 37.0
+offset_bottom = -4.0
+texture = ExtResource("1_emfsx")
+
+[node name="Name" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 62.0
+offset_bottom = 26.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Name:"
+
+[node name="Text" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 109.0
+offset_bottom = 31.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "có có có có..."
