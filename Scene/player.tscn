@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://e4onqs3b2qba"]
+
+[ext_resource type="Script" path="res://Script/player.gd" id="1_yfiia"]
+[ext_resource type="Texture2D" uid="uid://dhtrkijqrmn08" path="res://Assets/Player/bunecodnvaavochora.png" id="2_j67x4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0cb"]
+size = Vector2(20, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33o5k"]
+atlas = ExtResource("2_j67x4")
+region = Rect2(810, 800, 270, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3fif"]
+atlas = ExtResource("2_j67x4")
+region = Rect2(810, 400, 270, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ycwr"]
+atlas = ExtResource("2_j67x4")
+region = Rect2(270, 0, 270, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nta5f"]
+atlas = ExtResource("2_j67x4")
+region = Rect2(0, 400, 264, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg4qr"]
+atlas = ExtResource("2_j67x4")
+region = Rect2(534, 0, 264, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ly3n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33o5k")
+}],
+"loop": true,
+"name": &"idle-if",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3fif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ycwr")
+}],
+"loop": true,
+"name": &"walk-left-if",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nta5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg4qr")
+}],
+"loop": true,
+"name": &"walk-right-if",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_yfiia")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_cp0cb")
+
+[node name="camera" type="Camera2D" parent="."]
+visible = false
+position = Vector2(-1, -8)
+zoom = Vector2(1.5, 1.5)
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="animate" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -35)
+scale = Vector2(0.205556, 0.205555)
+sprite_frames = SubResource("SpriteFrames_3ly3n")
+animation = &"walk-right-if"
+frame_progress = 0.265588

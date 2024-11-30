@@ -1,0 +1,6 @@
+res://Scene/world.tscn
+res://Scene/player.tscn
+res://Scene/npc.tscn
+res://dialogue/dialogue.tscn
+res://Scene/map.tscn
+res://Timer/timer_control.tscn

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://6dq7aaxnuiew"]
+
+[ext_resource type="PackedScene" uid="uid://e4onqs3b2qba" path="res://Scene/player.tscn" id="1_je5an"]
+
+[sub_resource type="GDScript" id="GDScript_f5ior"]
+
+[node name="World" type="Node2D"]
+script = SubResource("GDScript_f5ior")
+
+[node name="Player" parent="." instance=ExtResource("1_je5an")]
+position = Vector2(71, 111)
+scale = Vector2(3, 3)

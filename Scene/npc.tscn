@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2h471akbt1ba"]
+
+[ext_resource type="Script" path="res://Script/npc.gd" id="1_wspd4"]
+[ext_resource type="PackedScene" uid="uid://c83e3s1gq2rdw" path="res://dialogue/dialogue.tscn" id="2_15vcd"]
+[ext_resource type="Texture2D" uid="uid://ck3ikart3l4wy" path="res://Assets/Outdoor decoration/paudoif.png" id="2_hbsm3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqsy6"]
+size = Vector2(33, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7sa4"]
+atlas = ExtResource("2_hbsm3")
+region = Rect2(412, 9, 383, 1047)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p7bwq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7sa4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fnm4i"]
+radius = 50.0
+
+[node name="NPC" type="CharacterBody2D"]
+script = ExtResource("1_wspd4")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -5)
+shape = SubResource("RectangleShape2D_nqsy6")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -61)
+scale = Vector2(0.122063, 0.122063)
+sprite_frames = SubResource("SpriteFrames_p7bwq")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="chat_detection_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chat_detection_area"]
+position = Vector2(1, -27)
+shape = SubResource("CircleShape2D_fnm4i")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Dialogue" parent="." instance=ExtResource("2_15vcd")]
+offset_left = -2.0
+offset_top = 35.0
+offset_right = 27.0
+offset_bottom = 75.0
+
+[connection signal="body_entered" from="chat_detection_area" to="." method="_on_chat_detection_area_body_entered"]
+[connection signal="body_exited" from="chat_detection_area" to="." method="_on_chat_detection_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="dialogue_finished" from="Dialogue" to="." method="_on_dialogue_dialogue_finished"]
